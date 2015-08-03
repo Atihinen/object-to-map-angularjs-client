@@ -1,0 +1,21 @@
+<div class="col-md-10 col-md-offset-1">
+	<div class="panel panel-primary">
+		<div class="panel-heading">Muokkaa kategoriaa</div>
+		<div class="panel-body" ng-show="isLoading">
+			<img src="assets/img/loader-big.gif" />
+		</div>
+		<div class="panel-body" ng-hide="isLoading">
+			<form ng-submit="updateCategory()">
+				<div class="form-group" ng-class="categoryClass">
+					<label>Nimi</label>
+					<div class="input-group">
+						<input type="text" ng-class="categoryNameClass" ng-model="category.name" class="form-control" />
+						<div class="input-group-addon" title="Päivityksen tila"><span class="glyphicon" ng-class="updateStatus" ng-class="updateStatusBg"></span></div>
+					</div>
+				</div>
+				<input type="submit" ng-disabled="isSaving" class="btn btn-primary" value="Päivitä" ng-hide="isSaving" />
+				<button class="btn btn-primary" ng-disabled="isSaving" ng-show="isSaving"><img src="assets/img/loader-small.gif"></button>
+		</div>
+	</div>
+
+</div>

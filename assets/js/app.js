@@ -11,6 +11,10 @@ app.config(function ($routeProvider) {
 	.when('/categories/new-category',{
 		controller: 'NewCategoryController',
 		templateUrl: 'views/new_category.html'
+	})
+	.when('/categories/:id',{
+		controller: 'EditCategoryController',
+		templateUrl: 'views/edit_category.html'
 	});
 });
 var apiBaseUrl = "http://localhost:8080/";

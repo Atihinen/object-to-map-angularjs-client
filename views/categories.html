@@ -6,7 +6,7 @@
 		</div>
 		<div class="panel-body" ng-hide="isLoading">
 			<ul ng-repeat="category in categories" ng-if="categories" class="list-group">
-				<li class="list-group-item">{{ category.name }} <span class="badge removable" ng-click="deleteCategory(category.id)"><span class="glyphicon glyphicon-remove"></span></span></li>
+				<li class="list-group-item"><a href=".#/categories/{{ category.id }}">{{ category.name }}</a> <span class="badge removable" ng-click="deleteCategory(category.id)"><span class="glyphicon glyphicon-remove"></span></span></li>
 			</ul>
 			<ul ng-show="categories.length == 0" class="list-group">
 				<li class="list-group-item">Ei kategorioita.</li>
