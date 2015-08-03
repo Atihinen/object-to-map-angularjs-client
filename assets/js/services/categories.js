@@ -1,7 +1,8 @@
 app.factory('categories', ['$http', function($http) {
   return({
     categories: categories,
-    addCategory: addCategory
+    addCategory: addCategory,
+    deleteCategory: deleteCategory
   }); 
 
   function categories(){
@@ -32,12 +33,14 @@ app.factory('categories', ['$http', function($http) {
    		});
    }
 
-   function handleSuccess(response){
-   		return(response.data);
-   }
-
-   function handleError(response){
-   		alert("Something went wrong");
-   		return(response);
+   function deleteCategory(id){
+   		return $http.delete(apiBaseUrl+'category/'+id+'/')
+   			.success(function(data){
+   				return data;
+   			})
+   			.error(function(err){
+   				alert("Something went wrong");
+   				return err;
+   			});
    }
 }]);
