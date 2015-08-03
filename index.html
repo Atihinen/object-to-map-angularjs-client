@@ -2,20 +2,29 @@
 <html>
 	<head>
 		<title>Palopostit kartalle</title>
+		<script type="text/javascript" src="assets/vendor/js/jquery.min.js"></script>
 		<script type="text/javascript" src="assets/vendor/js/angular.min.js"></script>
 		<script type="text/javascript" src="assets/vendor/js/angular-route.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="assets/vendor/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="assets/css/main.css">
 	</head>
 	<body ng-app="ObjectToMap">
-		<header>
-			<ul>
-				<li><a href="/#/">Kartta</a></li>
-			</ul>
+		<header class="row">
+			<nav class="navbar navbar-default navbar-fixed-top">
+				<ul class="nav navbar-nav">
+					<li><a href="./#/">Kartta</a></li>
+					<li><a href="./#/categories/">Kategoriat</a></li>
+				</ul>
+			</nav>
 		</header>
-		<div id="container" ng-view></div>
+		<div id="outer_container" class="row" ng-view></div>
 	<!-- Modules -->
 	<script type="text/javascript" src="assets/js/app.js"></script>
 	<!-- Controllers -->
 	<script type="text/javascript" src="assets/js/controllers/HomeController.js"></script>
-
+	<script type="text/javascript" src="assets/js/controllers/CategoriesController.js"></script>
+	<script type="text/javascript" src="assets/js/controllers/NewCategoryController.js"></script>
+	<!-- Services -->
+	<script type="text/javascript" src="assets/js/services/categories.js"></script>
 	</body>
 </html>

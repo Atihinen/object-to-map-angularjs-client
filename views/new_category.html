@@ -1,0 +1,15 @@
+<div class="col-md-10 col-md-offset-1">
+	<div class="panel panel-primary">
+		<div class="panel-heading">Uusi kategoria</div>
+		<div class="panel-body">
+			<form ng-submit="addCategory()">
+				<div class="form-group">
+					<label>Nimi</label>
+					<input type="text" ng-model="category.name" class="form-control" placeholder="Nimi" />
+				</div>
+				<input type="submit" ng-disabled="isSaving" class="btn btn-primary" value="Luo uusi" ng-hide="isSaving" />
+				<button class="btn btn-primary" ng-disabled="isSaving" ng-show="isSaving"><img src="assets/img/loader-small.gif"></button>
+		</div>
+	</div>
+
+</div>

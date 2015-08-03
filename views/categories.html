@@ -1,0 +1,18 @@
+<div class="col-md-10 col-md-offset-1">
+	<div class="panel panel-primary">
+		<div class="panel-heading">Kategoriat</div>
+		<div class="panel-body" ng-show="isLoading">
+			<img src="assets/img/loader-big.gif" />
+		</div>
+		<div class="panel-body" ng-hide="isLoading">
+			<ul ng-repeat="category in categories" ng-if="categories" class="list-group">
+				<li class="list-group-item">{{ category.name }} <span class="badge removable" ng-click="deleteCategory()"><span class="glyphicon glyphicon-remove"></span></span></li>
+			</ul>
+			<ul ng-show="categories.length == 0" class="list-group">
+				<li class="list-group-item">Ei kategorioita.</li>
+			</ul>
+			<a href=".#/categories/new-category" class="btn btn-default btn-primary" aria-label="Left Align"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Luo uusi</a>
+		</div>
+	</div>
+
+</div>
