@@ -9,7 +9,7 @@
 				<div class="form-group" ng-class="categoryClass">
 					<label>Nimi</label>
 					<div class="input-group">
-						<input type="text" ng-class="categoryNameClass" ng-model="category.name" class="form-control" />
+						<input type="text" ng-class="categoryNameClass" ng-model="category.name" class="form-control" required ng-maxlength="50" />
 						<div class="input-group-addon" title="Päivityksen tila"><span class="glyphicon" ng-class="updateStatus" ng-class="updateStatusBg"></span></div>
 					</div>
 				</div>
