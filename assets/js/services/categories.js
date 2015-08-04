@@ -69,7 +69,6 @@ app.factory('categories', ['$http', function($http) {
    			return data;
    		})
    		.error(function(err){
-   			alert("Something went wrong");
    			return err;
    		})
    }

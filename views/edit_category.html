@@ -5,15 +5,20 @@
 			<img src="assets/img/loader-big.gif" />
 		</div>
 		<div class="panel-body" ng-hide="isLoading">
-			<form ng-submit="updateCategory()">
+			<form ng-submit="updateCategory()" name="update_category">
 				<div class="form-group" ng-class="categoryClass">
 					<label>Nimi</label>
 					<div class="input-group">
-						<input type="text" ng-class="categoryNameClass" ng-model="category.name" class="form-control" required ng-maxlength="50" />
+						<input type="text" ng-class="categoryNameClass" ng-model="category.name" class="form-control" required ng-maxlength="50"  name="category_name" />
 						<div class="input-group-addon" title="Päivityksen tila"><span class="glyphicon" ng-class="updateStatus" ng-class="updateStatusBg"></span></div>
 					</div>
+					<div class="alert alert-warning form_error" ng-show="update_category.category_name.$error.maxlength">Ei saa olla yli 50 merkkiä.</div>
+
+					<div class="alert alert-danger form_error" ng-show="isConflict">Kategorian nimi on jo olemassa.</div>
+
+					<div class="alert alert-danger form_error" ng-show="serverSideError">Palvelin virhe. Kokeile myöhemmin uudestaan tai ota yhteyttä palvelun ylläpitäjään.</div>
 				</div>
-				<input type="submit" ng-disabled="isSaving" class="btn btn-primary" value="Päivitä" ng-hide="isSaving" />
+				<input type="submit" ng-disabled="update_category.category_name.$error.maxlength || !update_category.category_name.$dirty" class="btn btn-primary" value="Päivitä" ng-hide="isSaving"/>
 				<button class="btn btn-primary" ng-disabled="isSaving" ng-show="isSaving"><img src="assets/img/loader-small.gif"></button>
 		</div>
 	</div>

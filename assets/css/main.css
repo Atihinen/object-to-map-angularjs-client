@@ -5,3 +5,7 @@ body {
 .removable {
 	cursor: pointer;
 }
+
+.form_error {
+	margin-top: 1.5em;
+}

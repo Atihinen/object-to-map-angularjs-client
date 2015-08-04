@@ -2,12 +2,17 @@
 	<div class="panel panel-primary">
 		<div class="panel-heading">Uusi kategoria</div>
 		<div class="panel-body">
-			<form ng-submit="addCategory()">
+			<form ng-submit="addCategory()" name="new_category">
 				<div class="form-group">
 					<label>Nimi</label>
-					<input type="text" ng-model="category.name" class="form-control" placeholder="Nimi" />
+					<input type="text" ng-model="category.name" class="form-control" placeholder="Nimi" ng-model="category.name" class="form-control" required ng-maxlength="50"  name="category_name"/>
+					<div class="alert alert-warning form_error" ng-show="new_category.category_name.$error.maxlength">Ei saa olla yli 50 merkkiä.</div>
+					
+					<div class="alert alert-danger form_error" ng-show="isConflict">Kategorian nimi on jo olemassa.</div>
+
+					<div class="alert alert-danger form_error" ng-show="serverSideError">Palvelin virhe. Kokeile myöhemmin uudestaan tai ota yhteyttä palvelun ylläpitäjään.</div>
 				</div>
-				<input type="submit" ng-disabled="isSaving" class="btn btn-primary" value="Luo uusi" ng-hide="isSaving" />
+				<input type="submit" ng-disabled="isSaving || new_category.category_name.$error.maxlength" class="btn btn-primary" value="Luo uusi" ng-hide="isSaving" />
 				<button class="btn btn-primary" ng-disabled="isSaving" ng-show="isSaving"><img src="assets/img/loader-small.gif"></button>
 		</div>
 	</div>

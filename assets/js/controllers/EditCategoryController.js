@@ -6,6 +6,8 @@ app.controller('EditCategoryController', ['$scope', 'categories', '$routeParams'
 	$scope.categoryNameClass="bg-default";
 	$scope.updateStatus = "glyphicon-question-sign";
 	$scope.updateStatusBg = null;
+	$scope.isConflict = false;
+	$scope.serverSideError = false;
 
 	categoriesService.getCategory($scope.categoryId).success(function(data){
 		$scope.isLoading = true;
@@ -17,6 +19,7 @@ app.controller('EditCategoryController', ['$scope', 'categories', '$routeParams'
 	});
 
 	$scope.updateCategory = function(){
+		initErrorMessages();
 		if($scope.oldName != $scope.category.name){
 			$scope.isLoading = true;
 			categoriesService.updateCategory($scope.category.id, $scope.category.name)
@@ -31,6 +34,14 @@ app.controller('EditCategoryController', ['$scope', 'categories', '$routeParams'
 				$scope.categoryNameClass="bg-danger";
 				$scope.updateStatus="glyphicon-remove";
 				$scope.updateStatusBg="bg-danger";
+				if(typeof data.name !== "undefined"){
+					if(data.name === "DUBLICATE"){
+						$scope.isConflict = true;
+					}
+				}
+				else {
+					$scope.serverSideError = true;
+				}
 
 			})
 			.finally(function(){
@@ -38,6 +49,11 @@ app.controller('EditCategoryController', ['$scope', 'categories', '$routeParams'
 			});
 		}
 
+	}
+
+	function initErrorMessages(){
+		$scope.isConflict = false;
+		$scope.serverSideError = false;
 	}
 
 }]);
