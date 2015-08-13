@@ -9,3 +9,30 @@ body {
 .form_error {
 	margin-top: 1.5em;
 }
+
+.angular-google-map-container { height: 100vh; }
+
+#map_container {
+	position: relative;
+	top: -3.8em;
+	background: blue;
+	z-index: 0;
+}
+
+#show_fire_hydrants {
+	position: relative;
+	z-index: 1;
+	top: 1.5em;
+	right: -4.5em;
+	float: right;
+}
+
+#fire_hydrants_container {
+	position: relative;
+	z-index: 1;
+	height: 45em;
+	background: gray;
+	float: right;
+	top: 4.5em;
+	right: -8.5em;
+}

@@ -1,4 +1,4 @@
-var app = angular.module('ObjectToMap', ['ngRoute']);
+var app = angular.module('ObjectToMap', ['ngRoute', 'uiGmapgoogle-maps']);
 app.config(function ($routeProvider) {
 	$routeProvider.when('/',{
 		controller: 'HomeController',

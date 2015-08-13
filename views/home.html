@@ -1,1 +1,14 @@
-<div><p>Kartta tähän</p></div>
+<div class="row">
+<div class="col-md-12 nopadding" id="map_container">
+	<ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
+</div>
+<div class="row">
+<div class="col-xs-1" id="show_fire_hydrants" title="Näytä palopostit listana">
+	<button class="btn btn-default" ng-click="showFireHydrantContainer=!showFireHydrantContainer"><span class="glyphicon glyphicon-menu-hamburger"></span></button>
+</div>
+<div class="col-md-3" ng-show="showFireHydrantContainer" id="fire_hydrants_container">
+</div>
+</div>
+</div>
+
+<script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
