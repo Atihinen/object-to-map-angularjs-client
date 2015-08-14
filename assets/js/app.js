@@ -17,4 +17,5 @@ app.config(function ($routeProvider) {
 		templateUrl: 'views/edit_category.html'
 	});
 });
-var apiBaseUrl = "http://localhost:8080/";
+
+var apiBaseUrl = "http://"+location.host.split(":")[0]+":8080/";
