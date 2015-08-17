@@ -13,27 +13,31 @@ body {
 .angular-google-map-container { height: 100vh; }
 
 #map_container {
-	position: relative;
-	top: -1.5em;
 	background: blue;
-	z-index: 0;
 	height: 100vh;
+	padding: 0;
 }
 
 #show_fire_hydrants {
 	position: absolute;
 	z-index: 1;
-	top: 6.5em;
+	top: 7.5em;
 	right: -4.5em;
 	float: right;
 }
 
 #fire_hydrants_container {
-	position: absolute;
-	z-index: 1;
-	height: 45em;
 	background: gray;
-	float: right;
-	top: 9.5em;
-	right: -8.5em;
+	height: 100vh;
+	display: block;
+}
+
+#container {
+	height: 100vh;
+	overflow: hidden;
+}
+
+.hidden {
+	display: none;
+	visibility: hidden;
 }

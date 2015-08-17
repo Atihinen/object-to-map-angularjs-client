@@ -1,6 +1,7 @@
 app.controller('HomeController', ['$scope', 'firehydrants', function($scope, fireHydrantService){
 	$scope.map = {center: {latitude: 60.218184, longitude: 24.812150}, zoom: 15};
-	$scope.showFireHydrantContainer = false;
+	$scope.mapContainerClass="col-md-12";
+	$scope.fireHydrantContainerClass="hidden";
 	$scope.isServerError = false;
 	$scope.serverErrorMessage = "";
 	$scope.$watch("showFireHydrantContainer", function(){
