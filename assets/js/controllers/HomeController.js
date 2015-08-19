@@ -1,4 +1,5 @@
-app.controller('HomeController', ['$scope', 'firehydrants', function($scope, fireHydrantService){
+app.controller('HomeController', ['$scope', '$rootScope', 'firehydrants', function($scope, $rootScope, fireHydrantService){
+	$rootScope.nMarker = {};
 	$scope.map = {
 		center: {
 			latitude: 60.218184,
@@ -6,6 +7,10 @@ app.controller('HomeController', ['$scope', 'firehydrants', function($scope, fir
 		},
 		zoom: 15,
 		markers: [],
+		options: {
+			disableDoubleClickZoom: true,
+			scrollwheel: false
+		},
 		window: {
             marker: {},
             show: false,
@@ -22,17 +27,31 @@ app.controller('HomeController', ['$scope', 'firehydrants', function($scope, fir
                 console.log('Marker was clicked (' + marker + ', ' + eventName);//+', '+mydump(model, 0)+', '+mydump(arguments)+')');
 				console.log(marker);
 				console.log(model);
+				$rootScope.nMarker = model;
                 $scope.map.window.model = model;
                 updateMapWindow(model);
                 $scope.map.window.show = true;
             }
         },
         events: {
-        	click: function(m, e, model, arguments){
-        		console.log(m);
-        		console.log(e);
-        		console.log(model);
-        		console.log(arguments);
+        	dblclick: function(m, $e, model, arguments){
+        		var lat = model[0].latLng.G;
+        		var lng = model[0].latLng.K;
+        		$rootScope.nMarker = {
+        			title: 'New',
+        			latitude: lat,
+        			longitude: lng,
+        			id: 'not_defined'
+        		};
+
+        		$scope.map.window.model = $rootScope.nMarker;
+        		updateMapWindow($rootScope.nMarker);
+        		
+        		$scope.map.center.latitude = lat;
+        		$scope.map.center.longitude = lng;
+        		$scope.map.window.show = true;
+        		return;
+
         	}
         }
 	};
@@ -51,6 +70,9 @@ app.controller('HomeController', ['$scope', 'firehydrants', function($scope, fir
 			$scope.mapContainerClass = "col-md-12";
 			$scope.fireHydrantContainerClass = "hidden";
 		}
+	});
+	$scope.$watch("nMarker.description", function(){
+		console.log("Changed: "+$rootScope.nMarker.description);
 	});
 
 	$scope.findMarker = function(id){
@@ -129,5 +151,9 @@ app.controller('HomeController', ['$scope', 'firehydrants', function($scope, fir
         };
 
 	getFireHydrants();
+
+	$scope.addMarker = function($event){
+		//Required to fire the event in map
+	};
 
 }]);
