@@ -3,16 +3,24 @@
 </div>
 <div class="row">
 	<div ng-class="mapContainerClass" id="map_container">
-		<ui-gmap-google-map center='map.center' zoom='map.zoom'>
-			
-			<ui-gmap-markers models="markers" coords="'self'" icon="'icon'">
+		<ui-gmap-google-map center='map.center' zoom='map.zoom' events='map.events'>
+			<ui-gmap-window show="map.window.show" coords="map.window.model" options="map.window.options" closeClick="map.window.closeClick()">
+	            <div style="color: black">
+	                <p>Tyyppi: {{map.window.title}}</p>
+	                <p>Kuvaus: {{map.window.description}}</p>
+	                <p>Runkohalkaisijan pituus: {{ map.window.trunkLineDiameter}}</p>
+	            </div>
+        	</ui-gmap-window>
+			<ui-gmap-markers models="map.markers" coords="'self'" events="map.markersEvents" icon="'icon'">
         </ui-gmap-markers>
 		</ui-gmap-google-map>
 	</div>
 	<div ng-class="fireHydrantContainerClass" id="fire_hydrants_container">
-		<ul class="list-group" ng-repeat="fireHydrant in firehydrants">
-			<li class="list-group-item">{{ fireHydrant.category.name }}</li>
-		</ul>
+		<div class="row">
+			<ul class="list-group" ng-repeat="fireHydrant in firehydrants">
+				<li class="list-group-item" ng-click="findMarker(fireHydrant.id)">{{ fireHydrant.category.name }}</li>
+			</ul>
+		</div>
 	</div>
 </div>
 <div class="row" id="tools">
@@ -20,4 +28,3 @@
 		<button class="btn btn-default" ng-click="showFireHydrantContainer=!showFireHydrantContainer"><span class="glyphicon glyphicon-menu-hamburger"></span></button>
 	</div>
 </div>
-<script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
