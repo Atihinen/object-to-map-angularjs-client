@@ -1,5 +1,5 @@
-body {
-	padding-top: 70px;
+#main_nav {
+	margin-bottom: 0;
 }
 
 .removable {
@@ -17,7 +17,6 @@ body {
 	height: 100vh;
 	padding: 0;
 }
-
 #show_fire_hydrants {
 	position: absolute;
 	z-index: 1;
@@ -30,6 +29,7 @@ body {
 	background: gray;
 	height: 100vh;
 	display: block;
+	overflow: auto;
 }
 
 #container {
