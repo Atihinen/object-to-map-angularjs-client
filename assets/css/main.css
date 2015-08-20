@@ -29,7 +29,24 @@
 	background: gray;
 	height: 100vh;
 	display: block;
+	padding: 5px;
 	overflow: auto;
+}
+
+#search {
+	width: 90%;
+	margin-left: 5%;
+	margin-top: 7em;
+}
+
+
+#fire_hydrants_container ul {
+	margin-top: 1em;
+}
+
+#fire_hydrants_container ul li {
+	width: 90%;
+	margin-left: 5%;
 }
 
 #container {

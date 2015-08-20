@@ -36,10 +36,14 @@
 	</div>
 	<div ng-class="fireHydrantContainerClass" id="fire_hydrants_container">
 		<div class="row">
-			<ul class="list-group" ng-repeat="fireHydrant in firehydrants">
-				<li class="list-group-item" ng-click="findMarker(fireHydrant.id)">{{ fireHydrant.category.name }}</li>
-			</ul>
+			<div class="input-group" id="search">
+			<input type="text" class="form-control"/>
+			<div class="input-group-addon"><span class="glyphicon glyphicon-search"></span>
+			</div>
 		</div>
+		<ul class="list-group" id="fire_hydrants_list" ng-repeat="fireHydrant in firehydrants">
+			<li class="list-group-item" ng-click="findMarker(fireHydrant.id)">{{ fireHydrant.category.name }}</li>
+		</ul>
 	</div>
 </div>
 <div class="row" id="tools">
