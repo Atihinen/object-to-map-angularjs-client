@@ -22,6 +22,9 @@ app.controller('HomeController', ['$scope', '$rootScope', 'firehydrants', functi
             trunkLineDiameter: '',
             description: ''
         },
+        markerOptions: {
+        	draggable: true
+        },
         markersEvents: {
             click: function(marker, eventName, model, arguments) {
             	console.log(model);
@@ -60,16 +63,9 @@ app.controller('HomeController', ['$scope', '$rootScope', 'firehydrants', functi
         	}
         }
 	};
-	$rootScope.$watch('addedSuccesfully', function(){
-		if($rootScope.addedSuccesfully === true){
-			$rootScope.addedSuccesfully = false;
-			$scope.map.window.show = false;
-			getFireHydrants();
-		}
-	});
-	$rootScope.$watch('deletedSuccesfully', function(){
-		if($rootScope.deletedSuccesfully === true){
-			$rootScope.deletedSuccesfully = false;
+	$rootScope.$watch('eventSuccesfully', function(){
+		if($rootScope.eventSuccesfully === true){
+			$rootScope.eventSuccesfully = false;
 			$scope.map.window.show = false;
 			getFireHydrants();
 		}

@@ -1,8 +1,7 @@
 app.controller('InfoController', ['$scope', '$rootScope', 'categories', 'firehydrants', function($scope, $rootScope, categoriesService, fireHydrantService){
 	$scope.nMarker = {};
 	$scope.invalidId = false;
-	$rootScope.addedSuccesfully = false;
-	$rootScope.deletedSuccesfully = false;
+	$rootScope.eventSuccesfully = false;
 	categoriesService.categories().success(function(data){
 		$scope.categories = data;
 	});
@@ -15,16 +14,30 @@ app.controller('InfoController', ['$scope', '$rootScope', 'categories', 'firehyd
 			$scope.invalidId = true;
 			return
 		}
+		if($scope.nMarker.update === false){
 		console.log($rootScope.nMarker);
-		fireHydrantService.addFireHydrant(
-			$scope.nMarker.category.id, 
-			$scope.nMarker.latitude,
-			$scope.nMarker.longitude,
-			$scope.nMarker.description,
-			$scope.nMarker.trunkLineDiameter)
-			.success(function(data){
-				$rootScope.addedSuccesfully = true;
-			})
+			fireHydrantService.addFireHydrant(
+				$scope.nMarker.category.id, 
+				$scope.nMarker.latitude,
+				$scope.nMarker.longitude,
+				$scope.nMarker.description,
+				$scope.nMarker.trunkLineDiameter)
+				.success(function(data){
+					$rootScope.eventSuccesfully = true;
+				})
+		}
+		else {
+			fireHydrantService.updateFireHydrant(
+				$scope.nMarker.id,
+				$scope.nMarker.category.id,
+				$scope.nMarker.latitude,
+				$scope.nMarker.longitude,
+				$scope.nMarker.description,
+				$scope.nMarker.trunkLineDiameter)
+				.success(function(data){
+					$rootScope.eventSuccesfully = true;
+				});
+		}
 	}
 
 	$rootScope.$watch('nMarker', function(){
@@ -34,7 +47,7 @@ app.controller('InfoController', ['$scope', '$rootScope', 'categories', 'firehyd
 	$scope.deleteFireHydrant = function(id){
 		if(confirm("Haluatko poistaa palopostin?")){
 			fireHydrantService.deleteFireHydrant(id).success(function(data){
-				$rootScope.deletedSuccesfully = true;
+				$rootScope.eventSuccesfully = true;
 			});
 		}
 	}

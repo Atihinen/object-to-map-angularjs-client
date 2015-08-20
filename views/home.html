@@ -24,13 +24,13 @@
 	                </div>
 	                <input type="hidden" ng-model="nMarker.latitude" name="latitude" />
 	                <input type="hidden" ng-model="nMarker.longitude" name="longitude" />
-	                <input type="submit" class="btn btn-primary" ng-disabled="firehydrant_form.$invalid" />
+	                <input type="submit" class="btn btn-primary" ng-disabled="firehydrant_form.$invalid" value="{{nMarker.update ? 'Päivitä' : 'Luo uusi'}}" />
 	            	</form>
 	            	<button class="btn btn-danger" ng-click="deleteFireHydrant(nMarker.id)" ng-show="nMarker.update">Poista</button>
 	            </div>
 	            </div>
         	</ui-gmap-window>
-			<ui-gmap-markers models="map.markers" coords="'self'" events="map.markersEvents" icon="'icon'">
+			<ui-gmap-markers models="map.markers" coords="'self'" events="map.markersEvents" icon="'icon'" options="map.markerOptions">
         </ui-gmap-markers>
 		</ui-gmap-google-map>
 	</div>
