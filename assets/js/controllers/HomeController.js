@@ -24,9 +24,7 @@ app.controller('HomeController', ['$scope', '$rootScope', 'firehydrants', functi
         },
         markersEvents: {
             click: function(marker, eventName, model, arguments) {
-                console.log('Marker was clicked (' + marker + ', ' + eventName);//+', '+mydump(model, 0)+', '+mydump(arguments)+')');
-				console.log(marker);
-				console.log(model);
+            	console.log(model);
 				$rootScope.nMarker = model;
                 $scope.map.window.model = model;
                 updateMapWindow(model);
@@ -41,7 +39,14 @@ app.controller('HomeController', ['$scope', '$rootScope', 'firehydrants', functi
         			title: 'New',
         			latitude: lat,
         			longitude: lng,
-        			id: 'not_defined'
+        			id: 'not_defined',
+        			description: '',
+        			trunkLineDiameter: '',
+        			category: {
+        				id: 'not_defined',
+        				name: 'Valitse'
+        			},
+        			update: false
         		};
 
         		$scope.map.window.model = $rootScope.nMarker;
@@ -55,6 +60,12 @@ app.controller('HomeController', ['$scope', '$rootScope', 'firehydrants', functi
         	}
         }
 	};
+	$rootScope.$watch('addedSuccesfully', function(){
+		if($rootScope.addedSuccesfully === true){
+			$rootScope.addedSuccesfully = false;
+			getFireHydrants();
+		}
+	});
 	$scope.mapContainerClass="col-md-12";
 	$scope.fireHydrantContainerClass="hidden";
 	$scope.isServerError = false;
@@ -110,19 +121,15 @@ app.controller('HomeController', ['$scope', '$rootScope', 'firehydrants', functi
 	}
 
 	function createMapMarker(data){
-		/*var marker = new google.maps.Marker({
-            animation: google.maps.Animation.DROP,
-            position: new google.maps.LatLng(data.latitude, data.longitude),
-            title: data.category.name,
-            id: data.id
-        });*/
 		var marker = {
 			id: data.id,
 			latitude: data.latitude,
 			longitude: data.longitude,
 			title: data.category.name,
 			trunkLineDiameter: data.trunk_line_diameter,
-			description: data.description
+			description: data.description,
+			category: data.category,
+			update: true
 		};
 		return marker;
 	}

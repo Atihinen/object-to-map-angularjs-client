@@ -6,22 +6,25 @@
 		<ui-gmap-google-map center='map.center' zoom='map.zoom' events='map.events' options='map.options' ng-dblclick='addMarker($e)'>
 			<ui-gmap-window show="map.window.show" coords="map.window.model" options="map.window.options" closeClick="map.window.closeClick()">
 	            <div style="color: black">
-	                <p>Tyyppi: {{map.window.title}}</p>
-	                <p>Kuvaus: {{map.window.description}}</p>
-	                <p>Runkohalkaisijan pituus: {{ map.window.trunkLineDiameter}}</p>
 	                <div ng-controller='InfoController'>
 	                <form ng-submit="sendFireHydrant()">
+	                <div class="form-group" name="firehydrant_form">
+	                	<label>Tyyppi</label>
+	                	<select  class="form-control" name="category_id" ng-model="nMarker.category.id" ng-options="category.id as category.name for category in categories" required ng-pattern="/^[0-9]{1,7}$/">
+	                	</select>
+	                </div>
+	                <div class="alert alert-warning" ng-show="firehydrant_form.category_id.$error.required || invalidId">Valitse tyyppi</div>
 	                <div class="form-group">
 		                <label>Kuvaus</label>
-		                <input class="form-control" value="{{map.window.description}}" type="text" ng-model="nMarker.description" name="description" />
+		                <input class="form-control" type="text" ng-model="nMarker.description" name="description" />
 	                </div>
 	                <div class="form-group">
 		                <label>Runkolinjan halkaisija</label>
-		                <input class="form-control" type="text" ng-model="nMarker.trunkLineDiameter" value="{{map.window.trunkLineDiameter}}" name="trunk_line_diameter" />
+		                <input class="form-control" type="text" ng-model="nMarker.trunkLineDiameter" name="trunk_line_diameter" />
 	                </div>
 	                <input type="hidden" ng-model="nMarker.latitude" name="latitude" />
 	                <input type="hidden" ng-model="nMarker.longitude" name="longitude" />
-	                <input type="submit" class="btn btn-primary" />
+	                <input type="submit" class="btn btn-primary" ng-disabled="firehydrant_form.$invalid" />
 	            	</form>
 	            </div>
 	            </div>
