@@ -1,7 +1,8 @@
 app.factory('firehydrants', ['$http', function($http) {
 	return({
 		getFireHydrants: getFireHydrants,
-		addFireHydrant: addFireHydrant
+		addFireHydrant: addFireHydrant,
+		deleteFireHydrant: deleteFireHydrant
 	})
 
 	function getFireHydrants(){
@@ -36,5 +37,16 @@ app.factory('firehydrants', ['$http', function($http) {
 			alert("Something went wrong");
 			return err;
 		})
+	}
+
+	function deleteFireHydrant(id){
+		return $http.delete(apiBaseUrl+'fire-hydrant/'+id+'/')
+			.success(function(data){
+				return data;
+			})
+			.error(function(err){
+				alert("Something went wrong.");
+				return err;
+			});
 	}
 }]);

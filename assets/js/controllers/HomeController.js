@@ -63,6 +63,14 @@ app.controller('HomeController', ['$scope', '$rootScope', 'firehydrants', functi
 	$rootScope.$watch('addedSuccesfully', function(){
 		if($rootScope.addedSuccesfully === true){
 			$rootScope.addedSuccesfully = false;
+			$scope.map.window.show = false;
+			getFireHydrants();
+		}
+	});
+	$rootScope.$watch('deletedSuccesfully', function(){
+		if($rootScope.deletedSuccesfully === true){
+			$rootScope.deletedSuccesfully = false;
+			$scope.map.window.show = false;
 			getFireHydrants();
 		}
 	});
@@ -104,12 +112,12 @@ app.controller('HomeController', ['$scope', '$rootScope', 'firehydrants', functi
 	function getFireHydrants(){
 		fireHydrantService.getFireHydrants().success(function(data){
 			console.log(data.length);
-			if(data.length != $scope.firehydrants.length){
-				$scope.firehydrants = data;
-				angular.forEach($scope.firehydrants, function(val){
-					$scope.map.markers.push(createMapMarker(val));
-				});
-			}
+			
+			$scope.firehydrants = data;
+			$scope.map.markers = []
+			angular.forEach($scope.firehydrants, function(val){
+				$scope.map.markers.push(createMapMarker(val));
+			});
 		})
 		.error(function(err){
 			if(err === null){

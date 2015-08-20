@@ -26,6 +26,7 @@
 	                <input type="hidden" ng-model="nMarker.longitude" name="longitude" />
 	                <input type="submit" class="btn btn-primary" ng-disabled="firehydrant_form.$invalid" />
 	            	</form>
+	            	<button class="btn btn-danger" ng-click="deleteFireHydrant(nMarker.id)" ng-show="nMarker.update">Poista</button>
 	            </div>
 	            </div>
         	</ui-gmap-window>

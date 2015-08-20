@@ -2,6 +2,7 @@ app.controller('InfoController', ['$scope', '$rootScope', 'categories', 'firehyd
 	$scope.nMarker = {};
 	$scope.invalidId = false;
 	$rootScope.addedSuccesfully = false;
+	$rootScope.deletedSuccesfully = false;
 	categoriesService.categories().success(function(data){
 		$scope.categories = data;
 	});
@@ -28,6 +29,14 @@ app.controller('InfoController', ['$scope', '$rootScope', 'categories', 'firehyd
 
 	$rootScope.$watch('nMarker', function(){
 		$scope.nMarker = $rootScope.nMarker;
-	})
+	});
+
+	$scope.deleteFireHydrant = function(id){
+		if(confirm("Haluatko poistaa palopostin?")){
+			fireHydrantService.deleteFireHydrant(id).success(function(data){
+				$rootScope.deletedSuccesfully = true;
+			});
+		}
+	}
 
 }]);
