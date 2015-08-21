@@ -37,11 +37,11 @@
 	<div ng-class="fireHydrantContainerClass" id="fire_hydrants_container">
 		<div class="row">
 			<div class="input-group" id="search">
-			<input type="text" class="form-control"/>
+			<input type="text" class="form-control"  ng-model="query[queryBy]"/>
 			<div class="input-group-addon"><span class="glyphicon glyphicon-search"></span>
 			</div>
 		</div>
-		<ul class="list-group" id="fire_hydrants_list" ng-repeat="fireHydrant in firehydrants">
+		<ul class="list-group" id="fire_hydrants_list" ng-repeat="fireHydrant in firehydrants | filter:query">
 			<li class="list-group-item" ng-click="findMarker(fireHydrant.id)">{{ fireHydrant.category.name }}</li>
 		</ul>
 	</div>

@@ -18,9 +18,6 @@ app.controller('HomeController', ['$scope', '$rootScope', 'firehydrants', functi
                 this.show = false;
             },
             options: {}, // define when map is ready
-            title: '',
-            trunkLineDiameter: '',
-            description: ''
         },
         markerOptions: {
         	draggable: true
@@ -30,7 +27,6 @@ app.controller('HomeController', ['$scope', '$rootScope', 'firehydrants', functi
             	console.log(model);
 				$rootScope.nMarker = model;
                 $scope.map.window.model = model;
-                updateMapWindow(model);
                 $scope.map.window.show = true;
             }
         },
@@ -89,6 +85,8 @@ app.controller('HomeController', ['$scope', '$rootScope', 'firehydrants', functi
 	$scope.$watch("nMarker.description", function(){
 		console.log("Changed: "+$rootScope.nMarker.description);
 	});
+	$scope.queryBy = '$';
+	$scope.query = {};
 
 	$scope.findMarker = function(id){
 		console.log(id);
@@ -101,7 +99,8 @@ app.controller('HomeController', ['$scope', '$rootScope', 'firehydrants', functi
 		});
 		$scope.map.center.latitude = marker.latitude;
 		$scope.map.center.longitude = marker.longitude;
-		updateMapWindow(marker);
+		$rootScope.nMarker = marker;
+		$scope.map.window.model = marker;
         $scope.map.window.show = true;
 }
 
@@ -139,9 +138,6 @@ app.controller('HomeController', ['$scope', '$rootScope', 'firehydrants', functi
 	}
 
 	function updateMapWindow(model){
-		$scope.map.window.title = model.title;
-        $scope.map.window.description = model.description;
-        $scope.map.window.trunkLineDiameter = model.trunkLineDiameter;
 	}
 
 	/*var test = new google.maps.Marker({
