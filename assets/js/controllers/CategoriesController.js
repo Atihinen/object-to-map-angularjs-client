@@ -9,7 +9,7 @@ app.controller('CategoriesController', ['$scope', 'categories', function($scope,
 	});
 
 	$scope.deleteCategory = function(id){
-		res = confirm("Haluatko poistaa kategorian?");
+		res = confirm("Haluatko poistaa kategorian? Poistaa myös liitetyt palopostit.");
 		if(res === true){
 			$scope.isLoading = true;
 			categoriesService.deleteCategory(id).success(function(data){
