@@ -24,7 +24,7 @@ app.factory('categories', ['$http', function($http) {
                     method: 'POST',
                     url: apiBaseUrl+'category/new',
                     data: payload,
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8' }
         })
    		.success(function(data){
    			return data;
@@ -63,7 +63,7 @@ app.factory('categories', ['$http', function($http) {
    			method: 'PUT',
    			url: apiBaseUrl+'category/'+id+'/',
    			data: payload,
-   			headers: { 'Content-Type': 'application/x-www-form-urlencoded'}
+   			headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'}
    		})
    		.success(function(data){
    			return data;
