@@ -18,4 +18,4 @@ app.config(function ($routeProvider) {
 	});
 });
 
-var apiBaseUrl = "http://"+location.host.split(":")[0]+":8080/";
+var apiBaseUrl = "http://"+location.host.split(":")[0]+":8080/v1/";

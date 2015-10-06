@@ -8,7 +8,7 @@ app.factory('categories', ['$http', function($http) {
   }); 
 
   function categories(){
-	  return $http.get(apiBaseUrl+'category/') 
+	  return $http.get(apiBaseUrl+'categories') 
 	            .success(function(data) { 
 	              return data; 
 	            }) 
@@ -22,7 +22,7 @@ app.factory('categories', ['$http', function($http) {
    		var payload = $.param({name: categoryName});
    		return $http({
                     method: 'POST',
-                    url: apiBaseUrl+'category/new',
+                    url: apiBaseUrl+'categories/new',
                     data: payload,
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8' }
         })
@@ -36,7 +36,7 @@ app.factory('categories', ['$http', function($http) {
    }
 
    function deleteCategory(id){
-   		return $http.delete(apiBaseUrl+'category/'+id+'/')
+   		return $http.delete(apiBaseUrl+'categories/'+id)
    			.success(function(data){
    				return data;
    			})
@@ -47,7 +47,7 @@ app.factory('categories', ['$http', function($http) {
    }
 
    function getCategory(id){
-   		return $http.get(apiBaseUrl+'category/'+id+'/')
+   		return $http.get(apiBaseUrl+'categories/'+id)
    		.success(function(data){
    			return data;
    		})
@@ -61,7 +61,7 @@ app.factory('categories', ['$http', function($http) {
    		var payload = $.param({name: categoryName});
    		return $http({
    			method: 'PUT',
-   			url: apiBaseUrl+'category/'+id+'/',
+   			url: apiBaseUrl+'categories/'+id,
    			data: payload,
    			headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'}
    		})
