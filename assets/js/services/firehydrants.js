@@ -7,7 +7,7 @@ app.factory('firehydrants', ['$http', function($http) {
 	})
 
 	function getFireHydrants(){
-		return $http.get(apiBaseUrl+'fire-hydrant/')
+		return $http.get(apiBaseUrl+'fire-hydrants')
 			.success(function(data){
 				return data;
 			})
@@ -27,7 +27,7 @@ app.factory('firehydrants', ['$http', function($http) {
 		});
 		return $http({
 			method: 'POST',
-			url: apiBaseUrl+'fire-hydrant/new/',
+			url: apiBaseUrl+'fire-hydrants/new',
 			data: payload,
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
 		})
@@ -41,7 +41,7 @@ app.factory('firehydrants', ['$http', function($http) {
 	}
 
 	function deleteFireHydrant(id){
-		return $http.delete(apiBaseUrl+'fire-hydrant/'+id+'/')
+		return $http.delete(apiBaseUrl+'fire-hydrants/'+id)
 			.success(function(data){
 				return data;
 			})
@@ -61,7 +61,7 @@ app.factory('firehydrants', ['$http', function($http) {
 		});
 		return $http({
 			method: 'PUT',
-			url: apiBaseUrl+'fire-hydrant/'+id+'/',
+			url: apiBaseUrl+'fire-hydrants/'+id,
 			data: payload,
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
 		})
